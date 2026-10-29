@@ -1,26 +1,61 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>JADWALKU — Asisten Belajar Pelajar</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap">
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FaceSecure AI</title>
 <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<header><div class="bar">
-<a class="logo" href="#beranda" aria-label="JADWALKU Beranda"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="3" y="6" width="28" height="25" rx="6" fill="#4169E1"/><rect x="3" y="6" width="28" height="9" rx="5" fill="#8067E8"/><rect x="9" y="2" width="3" height="7" rx="1.5" fill="#4169E1"/><rect x="22" y="2" width="3" height="7" rx="1.5" fill="#4169E1"/><path d="M10 23l5 5 9-9" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>JADWALKU</a>
-<button id="burger" class="btn ghost sm" aria-label="Buka menu" aria-expanded="false">☰ Menu</button>
-<nav id="nav"><a class="n" href="#beranda">Beranda</a><a class="n" href="#jadwal">Jadwal Pelajaran</a><a class="n" href="#tugas">Daftar Tugas</a><a class="n" href="#kalender">Kalender</a><a class="n" href="#statistik">Statistik Belajar</a><a class="n" href="#tips">Tips Belajar</a><a class="n" href="#profil">Profil</a><button class="btn ghost sm" id="theme" aria-label="Ganti tema terang atau gelap">🌓</button><a class="btn sm" href="#dashboard">Dashboard Saya</a></nav>
-</div></header>
-<main id="app"></main>
-<footer>
-<p><b>JADWALKU</b> — Atur Jadwalmu, Selesaikan Tugasmu, Raih Prestasimu!</p>
-<p><a href="#beranda">Beranda</a><a href="#jadwal">Jadwal</a><a href="#tugas">Tugas</a><a href="#kalender">Kalender</a><a href="#statistik">Statistik</a><a href="#tips">Tips</a></p>
-<p><a href="#" data-info="tentang">Tentang Kami</a><a href="#" data-info="privasi">Kebijakan Privasi</a></p>
-<p class="mut">📚 ✏️ 📅 © <span id="yr"></span> JADWALKU</p>
-</footer>
-<div id="modal" hidden></div><div id="toast" hidden role="status"></div>
+</head><body>
+<main id="app">
+<header class="brand"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#3aa0ff" stroke-width="1.8" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.4 9-8 11-4.6-2-8-6-8-11V5z"/><circle cx="12" cy="10" r="3"/><path d="M7.5 17c1-2 2.7-3 4.5-3s3.5 1 4.5 3"/></svg><b>FaceSecure <span>AI</span></b></header>
+
+<section id="v-login" class="view card">
+  <h1>Selamat datang</h1>
+  <p class="mu">Verifikasi identitas dengan wajah Anda atau gunakan kata sandi.</p>
+  <button class="btn main" id="b-face">📷 Masuk dengan Face ID</button>
+  <p class="hint">Petunjuk: gunakan ruangan terang, lepas masker/kacamata gelap, dan izinkan akses kamera saat diminta. Kamera hanya aktif setelah Anda menyetujui.</p>
+  <div class="or">atau masuk dengan kata sandi</div>
+  <form id="f-login"><label for="lu">Nama pengguna</label><input id="lu" autocomplete="username" required><label for="lp">Kata sandi</label><input id="lp" type="password" autocomplete="current-password" required><button class="btn">Masuk</button></form>
+  <p class="mu">Belum punya akun? <a href="#" id="to-reg">Buat akun</a></p>
+</section>
+
+<section id="v-reg" class="view card hidden">
+  <h1>Buat akun</h1>
+  <form id="f-reg"><label for="ru">Nama pengguna</label><input id="ru" autocomplete="username" minlength="3" required><label for="rp">Kata sandi (min. 8 karakter)</label><input id="rp" type="password" autocomplete="new-password" minlength="8" required><button class="btn main">Daftar</button></form>
+  <p class="mu"><a href="#" id="to-login">Kembali ke login</a></p>
+</section>
+
+<section id="v-cam" class="view card hidden">
+  <h1 id="cam-t">Pemindaian wajah</h1>
+  <div class="frame" id="frame"><video id="vid" playsinline muted></video><div class="line"></div></div>
+  <div class="bar"><i id="prog"></i></div>
+  <p class="status" id="say" aria-live="polite">Menyiapkan…</p>
+  <button class="btn ghost" id="cam-x">Batal</button>
+</section>
+
+<section id="v-res" class="view card hidden" style="text-align:center">
+  <div id="res-i" class="big"></div><h1 id="res-t"></h1><p class="mu" id="res-m"></p>
+  <button class="btn main" id="res-1"></button> <button class="btn ghost" id="res-2"></button>
+</section>
+
+<section id="v-home" class="view card hidden">
+  <h1>Halo, <span id="h-u"></span></h1>
+  <div class="grid">
+    <div class="tile"><small>Face ID</small><b id="h-f"></b></div>
+    <div class="tile"><small>Status keamanan</small><b id="h-s"></b></div>
+  </div>
+  <p class="mu" id="h-d"></p>
+  <h2>Pengaturan akun</h2>
+  <button class="btn main" id="h-en"></button>
+  <button class="btn ghost" id="h-off">Nonaktifkan Face ID &amp; hapus data wajah</button>
+  <button class="btn ghost" id="h-del">Hapus akun</button>
+  <button class="btn red" id="h-out">Keluar</button>
+</section>
+</main>
+
+<dialog id="dlg"><h2>Izin kamera &amp; data wajah</h2>
+<p>Kamera hanya aktif selama proses ini dan dimatikan setelah selesai. Gambar wajah tidak disimpan.</p>
+<p id="cs">Untuk Face ID, aplikasi menyimpan <b>templat numerik wajah</b> (128 angka) di perangkat ini saja, dan Anda dapat menghapusnya kapan saja.<br><label class="ck"><input type="checkbox" id="ck"> Saya setuju data wajah saya disimpan di perangkat ini.</label></p>
+<div class="row"><button class="btn main" id="ok">Izinkan kamera</button><button class="btn ghost" id="no">Batal</button></div></dialog>
+<div id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.12/dist/face-api.js"></script>
 <script src="script.js"></script>
-</body>
-</html>
+</body></html>
