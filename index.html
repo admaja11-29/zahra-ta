@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JADWALKU — Asisten Belajar Pelajar</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><div class="bar">
+<a class="logo" href="#beranda" aria-label="JADWALKU Beranda"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="3" y="6" width="28" height="25" rx="6" fill="#4169E1"/><rect x="3" y="6" width="28" height="9" rx="5" fill="#8067E8"/><rect x="9" y="2" width="3" height="7" rx="1.5" fill="#4169E1"/><rect x="22" y="2" width="3" height="7" rx="1.5" fill="#4169E1"/><path d="M10 23l5 5 9-9" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>JADWALKU</a>
+<button id="burger" class="btn ghost sm" aria-label="Buka menu" aria-expanded="false">☰ Menu</button>
+<nav id="nav"><a class="n" href="#beranda">Beranda</a><a class="n" href="#jadwal">Jadwal Pelajaran</a><a class="n" href="#tugas">Daftar Tugas</a><a class="n" href="#kalender">Kalender</a><a class="n" href="#statistik">Statistik Belajar</a><a class="n" href="#tips">Tips Belajar</a><a class="n" href="#profil">Profil</a><button class="btn ghost sm" id="theme" aria-label="Ganti tema terang atau gelap">🌓</button><a class="btn sm" href="#dashboard">Dashboard Saya</a></nav>
+</div></header>
+<main id="app"></main>
+<footer>
+<p><b>JADWALKU</b> — Atur Jadwalmu, Selesaikan Tugasmu, Raih Prestasimu!</p>
+<p><a href="#beranda">Beranda</a><a href="#jadwal">Jadwal</a><a href="#tugas">Tugas</a><a href="#kalender">Kalender</a><a href="#statistik">Statistik</a><a href="#tips">Tips</a></p>
+<p><a href="#" data-info="tentang">Tentang Kami</a><a href="#" data-info="privasi">Kebijakan Privasi</a></p>
+<p class="mut">📚 ✏️ 📅 © <span id="yr"></span> JADWALKU</p>
+</footer>
+<div id="modal" hidden></div><div id="toast" hidden role="status"></div>
+<script src="script.js"></script>
+</body>
+</html>
